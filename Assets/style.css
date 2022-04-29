@@ -15,7 +15,7 @@ body {
   background-color: rgb(255, 0, 0);
 }
 
-.main {
+#main {
   display: flex;
   flex: 2;
   justify-content: center;
@@ -133,11 +133,11 @@ footer {
   margin-bottom: 15px;
 }
 
-.feedback-form-section {
+/* .feedback-form-section {
 }
 
 .form-control {
-}
+} */
 
 @media screen and (max-width: 768px) {
   footer {
