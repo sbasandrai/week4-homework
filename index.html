@@ -7,44 +7,36 @@
     <link rel="stylesheet" type="text/css" href="./Assets/style.css" />
     <title>Document</title>
   </head>
-  <body> 
+  <body>
+    <header class="header">
+      <nav class="nav-container">
+        <img
+          src="./images/mathquiz.png"
+          alt="maths quiz logo"
+          class="logo-img"
+        />
 
-        <header class="header">
-            
-            <nav class="nav-container">
+        <a href="./index.html" style="text-decoration: none"> Home </a>
+        <a> Live Score </a>
+        <a class="time"> Time remaining</a>
+        <div id="mainn"></div></a>
+      </nav>
+    </header>
 
-                <img
-                  src="./images/mathquiz.png"
-                  alt="maths quiz logo"
-                  class="logo-img"
-                />
-                
-              <a href="./index.html" style="text-decoration: none;"> Home </a>
-              <a> Live Score </a>
-              <a> Time remaining </a>
-                
-              </a>
-              
-            </nav>
-          </header>
-      
-        <main id="main">
+    <main id="main">
+      <section id="main-border">
+        <h1>Welcome to the Maths Quiz</h1>
 
-            <section id="main-border"> 
+        <h2>Click below to start the quiz</h2>
 
-            <h1> Welcome to the Maths Quiz </h1>
+        <button id="start-btn">Start Quiz</button>
+      </section>
 
-            <h2> Click below to start the quiz</h2>
+      <!-- Question section -->
 
-            <button id="start-btn"> Start Quiz </button>
+      <!-- question section dynamically rendered via JS -->
 
-        </section>
-
-        <!-- Question section -->
-
-        <!-- question section dynamically rendered via JS -->
-      
-        <!-- <section class="content-section question-container">
+      <!-- <section class="content-section question-container">
 
         <h2 class="content-section-title">
           What is 5 + 3?
@@ -76,18 +68,15 @@
             <button class="btn" type="submit">Submit</button>
           </div>
         </form>
-      </section> -->
+      </section>  -->
+    </main>
 
+    <footer class="footer">
+      <a>Sachin Basandrai &copy; Coding Bootcamp 2022</a>
+      <a href="mailto:sachin.basandrai@mwphillips.co.uk"> Email </a>
+      <a href="https://github.com/sbasandrai"> Github </a>
+    </footer>
 
-     </main>
-
-          <footer class="footer">
-            <a>Sachin Basandrai &copy; Coding Bootcamp 2022</a>
-            <a href="mailto:sachin.basandrai@mwphillips.co.uk"> Email </a> 
-            <a href="https://github.com/sbasandrai"> Github </a>
-        
-          </footer>
-
-        <script src="./Assets/javascript.js"></script>
+    <script src="./Assets/javascript.js"></script>
   </body>
 </html>

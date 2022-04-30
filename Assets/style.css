@@ -40,6 +40,12 @@ body {
   padding: 1rem 2rem;
 }
 
+.time {
+  font-size: 20px;
+  padding-bottom: 20px;
+  font-weight: bold;
+}
+
 a {
   align-content: center;
   margin-top: 2rem;
