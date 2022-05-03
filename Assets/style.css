@@ -87,6 +87,14 @@ footer {
   margin-bottom: 15px;
 }
 
+.btn {
+  font-size: 18px;
+  text-transform: uppercase;
+  padding: 10px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  margin: 15px;
+}
+
 #start-btn:hover {
   background-color: rgb(101, 6, 6);
   color: white;
@@ -137,6 +145,28 @@ footer {
   padding: 20px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   margin-bottom: 15px;
+}
+
+.tablestyle {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  justify-content: center;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 2px;
 }
 
 /* .feedback-form-section {

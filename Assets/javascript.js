@@ -5,8 +5,6 @@ const mainElement = document.getElementById("main");
 
 let questionIndex = 0;
 
-// const options = ["yes", "no", "maybe"];
-
 // Selects element by class
 var timeEl = document.querySelector(".time");
 
@@ -14,6 +12,7 @@ var timeEl = document.querySelector(".time");
 var mainEl = document.getElementById("mainn");
 
 var secondsLeft = 60;
+var score = 0;
 
 function setTime() {
   // Sets interval in variable
@@ -28,48 +27,46 @@ function setTime() {
       clearInterval(timerInterval);
       // Calls function to create and append image
       sendMessage();
-    } else if (questions[0].options[1] === "December 31st") {
-      secondsLeft -= 30;
     }
   }, 1000);
 }
 
-// Function to create and append colorsplosion image
+// Function once game is over - sends alert and removes question
 function sendMessage() {
   alert("GAME OVER");
   removeQuestion();
   document.getElementById("feedback-form").remove();
-
-  //   timeEl.textContent = " ";
-  //   var imgEl = document.createElement("img");
-  //   imgEl.setAttribute("src", "images/image_1.jpg");
-  //   mainEl.appendChild(imgEl);
 }
 
 const questions = [
   {
     text: "The day before yesterday I was 25. The next year I will be 28. This is true only one day in a year. What day is my Birthday? ",
     options: ["December 31st", "October 12th", "April 10th"],
+    answer: "December 31st",
   },
 
   {
     text: "If the 3rd of March is a Tuesday, what day of the week is the 1st of July",
     options: ["Monday", "Wednesday", "Friday"],
+    answer: "Wednesday",
   },
 
   {
     text: "How many sides does an octagon have?",
     options: ["Six", "Seven", "Eight"],
+    answer: "Eight",
   },
 
   {
     text: "Which of these is a famous mathematician?",
     options: ["Pythagoras", "Marie Curie", "George Washington"],
+    answer: "Pythagoras",
   },
 
   {
     text: "What is the square root of 64?",
     options: ["Four", "Three", "Eight"],
+    answer: "Eight",
   },
 ];
 
@@ -83,10 +80,17 @@ function handleOptionClick(event) {
     console.log(value);
 
     const question = questions[questionIndex].text;
+    const answer = questions[questionIndex].answer;
 
     console.log(question);
 
-    const answer = { question, value };
+    // const answer = { question, value };
+    // if correct answer, adds on 10 points, if wrong answer then takes 10 seconds off
+    if (answer === target.textContent) {
+      score += 10;
+    } else {
+      secondsLeft -= 10;
+    }
 
     // store answer in local storage
     storeInLS("feedbackResults", answer);
@@ -119,12 +123,12 @@ const handleFormSubmit = (event) => {
   // validate
   if (fullName) {
     // if valid then store feedbackResults in LS
-    const feedbackResults = JSON.parse(localStorage.getItem("feedbackResults"));
+    // const feedbackResults = JSON.parse(localStorage.getItem("feedbackResults"));
 
     // build object with fullName and results
     const result = {
       fullName,
-      feedbackResults,
+      score,
     };
 
     // push the results back to LS
@@ -147,9 +151,63 @@ const renderResults = () => {
 };
 
 const scoretable = () => {
+  var x = JSON.parse(window.localStorage.getItem("allResults"));
+
+  const section = document.createElement("section");
+  const h1 = document.createElement("h1");
+  h1.textContent = "Your Score";
   const table = document.createElement("table");
-  const h2 = document.createElement("h2");
-  h2.textContent = "Top Scores";
+  table.setAttribute("class", "tablestyle");
+  table.setAttribute("id", "highscoretable");
+  const tr = document.createElement("tr");
+  const th = document.createElement("th");
+  th.textContent = "Name";
+  const th1 = document.createElement("th");
+  th1.textContent = "Score";
+  const tr1 = document.createElement("tr");
+  const td = document.createElement("td");
+  td.setAttribute("id", "allResults");
+  td.textContent = x[x.length - 1].fullName;
+  const td1 = document.createElement("td");
+  td1.textContent = score;
+  const buttonDiv = document.createElement("div");
+  buttonDiv.setAttribute("class", "form-control");
+  const button = document.createElement("button");
+  //   button.setAttribute("type", "submit");
+  const button2 = document.createElement("button");
+  button.setAttribute("class", "btn");
+  button.textContent = "PLAY AGAIN";
+  button2.setAttribute("class", "btn");
+  button2.textContent = "CLEAR SCORES FROM LOCAL MEMORY";
+
+  section.append(h1, table);
+  table.append(tr, tr1);
+  tr.append(th, th1);
+  tr1.append(td, td1);
+  mainElement.append(section);
+
+  buttonDiv.append(button, button2);
+
+  section.append(buttonDiv);
+
+  mainElement.append(section);
+  // const all = JSON.parse(localStorage.getItem("allResults"));
+
+  // const el = document.getElementById("top10");
+  // all.forEach((item) => {
+  //   el.textContent += item.fullName;
+  // });
+
+  button.addEventListener("click", startGame);
+  button2.addEventListener("click", clearScores);
+};
+
+startGame = () => {
+  window.location.href = "./index.html";
+};
+
+clearScores = () => {
+  localStorage.clear();
 };
 
 const renderForm = () => {
