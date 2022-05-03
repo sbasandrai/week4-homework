@@ -20,12 +20,11 @@ function setTime() {
     secondsLeft--;
     timeEl.textContent = secondsLeft;
 
-    // const getCat = function (obj) {};
+    //action to take when seconds on clock is zero
 
     if (secondsLeft === 0) {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
-      // Calls function to create and append image
       sendMessage();
     }
   }, 1000);
@@ -38,6 +37,7 @@ function sendMessage() {
   document.getElementById("feedback-form").remove();
 }
 
+// all questions, answer options and correct answer
 const questions = [
   {
     text: "The day before yesterday I was 25. The next year I will be 28. This is true only one day in a year. What day is my Birthday? ",
@@ -70,6 +70,9 @@ const questions = [
   },
 ];
 
+// when game started, and answer selected, will deduct 10 seconds if incorrect and adds 10 points if correct
+
+// does this up until the last question after which new form created to display score
 function handleOptionClick(event) {
   const currenttarget = event.currentTarget;
   const target = event.target;
@@ -150,6 +153,8 @@ const renderResults = () => {
   console.log("render results");
 };
 
+// creation of score table with score for user
+
 const scoretable = () => {
   var x = JSON.parse(window.localStorage.getItem("allResults"));
 
@@ -191,12 +196,6 @@ const scoretable = () => {
   section.append(buttonDiv);
 
   mainElement.append(section);
-  // const all = JSON.parse(localStorage.getItem("allResults"));
-
-  // const el = document.getElementById("top10");
-  // all.forEach((item) => {
-  //   el.textContent += item.fullName;
-  // });
 
   button.addEventListener("click", startGame);
   button2.addEventListener("click", clearScores);
@@ -287,12 +286,6 @@ const renderQuestion = () => {
   mainElement.append(section);
 
   section.addEventListener("click", handleOptionClick);
-
-  //   const div = document.createElement("div");
-  //   div.setAttribute("class", "btn-control");
-
-  //   const button = document.createElement("button");
-  //   button.setAttribute("class", "btn");
 };
 
 const removeQuestion = () => {
@@ -300,7 +293,7 @@ const removeQuestion = () => {
   document.getElementById("question-container").remove();
 };
 
-// get feedback from LS
+// initialises local storage
 
 const initialiseLocalStorage = () => {
   // get feedbackResults from LS
@@ -321,6 +314,7 @@ const initialiseLocalStorage = () => {
   }
 };
 
+// stores values in local storage
 const storeInLS = (key, value) => {
   // get feedbackResults from LS
   const arrayFromLS = JSON.parse(localStorage.getItem(key));
